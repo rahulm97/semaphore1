@@ -1,3 +1,4 @@
+package BarrierS;
 import java.util.Random;
 
 public class BThread extends Thread {

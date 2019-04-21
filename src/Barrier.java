@@ -3,20 +3,19 @@ import java.util.concurrent.Semaphore;
 public class Barrier {
 	
 	// add missing variables
-	public volatile static int blocked = 0;
-	public static int size;
+	
+	private Semaphore semaphore;
 	
 	Barrier(int n) {
 		// complete this constructor
-		size = n;
+		semaphore = new Semaphore(n);
 	}
 	
 	public void b_wait() throws InterruptedException{
 		// this is the only additional method you will need to complete
-		blocked+=1;
-		while (blocked < size);
-
-		blocked-=1;
+		semaphore.acquire();
+		while (semaphore.availablePermits() != 0);
+		semaphore.release();
 	}
 
 }
